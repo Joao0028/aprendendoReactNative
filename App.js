@@ -10,19 +10,10 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.nome}>{nome}</Text>
-      <Button title="Entrar" onPress={entrar} />
+    <View style={{backgroundColor:'#121212', flex: 1}}>
+      <View style={{height: 50, backgroundColor: '#f1f1f1'}}></View>
+      <View style={{flex: 1, backgroundColor: 'white'}}></View>
+      <View style={{height: 50, backgroundColor: '#f1f1f1'}}></View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-  nome: {
-    textAlign: "center",
-    margin: 15,
-    color: "#313131",
-    fontSize: 18,
-  },
-});

@@ -16,7 +16,6 @@ export default function Cronometro() {
     }
     return () => {
       clearInterval(interval)
-      setUltimo(timer.toFixed(1))
     }; // Limpar o intervalo quando o componente for desmontado
   }, [inicia]);
 
@@ -27,6 +26,7 @@ export default function Cronometro() {
   function limpar() {
     setInicia(false);
     clearInterval(interval);
+    setUltimo(timer.toFixed(1))
     setTimer(0);
   }
 

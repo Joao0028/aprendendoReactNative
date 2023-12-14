@@ -1,13 +1,20 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import BiscoitoDaSorte from "./src/components/BiscoitoDaSorte";
-import Cronometro from "./src/components/Cronometro";
+import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
+  const pessoas = [
+    {nome: "João" , idade: 17},
+    {nome: "Paulo" , idade: 23},
+    {nome: "Rosa" , idade: 64},
+    {nome: "Diego" , idade: 28},
+  ]
   return (
     <View style={styles.container}>
-       <Cronometro />
+       <FlatList 
+       data={pessoas}
+       keyExtractor={(item) => item.nome}
+       renderItem={({item}) => <Text>{item.nome}</Text>}
+       />
     </View>
   );
 }

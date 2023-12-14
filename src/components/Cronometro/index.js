@@ -5,6 +5,7 @@ import relogioImagem from "../../../assets/img/cronometro.png";
 export default function Cronometro() {
   const [timer, setTimer] = useState(0);
   const [inicia, setInicia] = useState(false);
+  const [ultimoTempo, setUltimo] = useState(null);
   let interval;
 
   useEffect(() => {
@@ -12,8 +13,11 @@ export default function Cronometro() {
       interval = setInterval(() => {
         setTimer((numeroAtual) => numeroAtual + 0.1);
       }, 100);
-    } 
-    return () => clearInterval(interval); // Limpar o intervalo quando o componente for desmontado
+    }
+    return () => {
+      clearInterval(interval)
+      setUltimo(timer.toFixed(1))
+    }; // Limpar o intervalo quando o componente for desmontado
   }, [inicia]);
 
   function iniciar() {
@@ -32,11 +36,16 @@ export default function Cronometro() {
       <Text style={estilos.timer}>{timer.toFixed(1)}</Text>
       <View style={estilos.viewDois}>
         <TouchableOpacity style={estilos.btn} onPress={iniciar}>
-          <Text style={estilos.btnTexto}>{inicia == false? "Iniciar":"Pausar"}</Text>
+          <Text style={estilos.btnTexto}>
+            {inicia == false ? "Iniciar" : "Pausar"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity style={estilos.btn} onPress={limpar}>
           <Text style={estilos.btnTexto}>Limpar</Text>
         </TouchableOpacity>
+        <Text style={estilos.ultimoTempo}>
+          {ultimoTempo != null ? `Ultimo tempo: ${ultimoTempo}` : "Teste:"}
+        </Text>
       </View>
     </View>
   );
@@ -79,5 +88,11 @@ const estilos = StyleSheet.create({
   viewDois: {
     gap: 20,
     marginTop: 120,
+  },
+  ultimoTempo: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textTransform: "uppercase",
   },
 });

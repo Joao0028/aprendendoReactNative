@@ -1,0 +1,9 @@
+Desafio:
+
+- Aplicativo de banco: Banco React
+Nome (TextInput)
+Sexo (Picker)
+Limite (Slider)
+Estudante (Switch)
+Botão (Abrir conta) 
+> Mostra todos os dados em um alerta. Não pode deixar dados em branco

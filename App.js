@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import AprendendoSwitch from "./src/components/AprendendoSwitch";
-import Desafio from "./src/components/Desafio";
+import Instagram from "./src/components/Instagram";
 
 export default function App() {
   
   return (
     <View style={styles.container}>
-       <Desafio />
+       <Instagram />
     </View>
   );
 }

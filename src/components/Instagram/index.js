@@ -62,17 +62,30 @@ export default function Instagram() {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity>
-          <Image source={require("./img/logo.png")} style={styles.logo} />
+          <Image 
+          source={require("./img/logo.png")} 
+          style={styles.logo} 
+          />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Image source={require("./img/send.png")} style={styles.send} />
+          <Image 
+          source={require("./img/send.png")} 
+          style={styles.send} 
+          />
         </TouchableOpacity>
       </View>
 
       <FlatList 
       showsVerticalScrollIndicator={false} 
       data={pessoas} 
-      renderItem={({item}) => <Lista data={item} nome={item.nome}/>} />
+      keyExtractor={(item) => item.id}
+      renderItem={({item}) => 
+      <Lista data={item} 
+      nome={item.nome} 
+      descricao={item.descricao}
+      imagemPerfil={item.imgperfil}
+      imagemPublicação={item.imgPublicacao}/>} 
+      />
     </View>
   );
 }
@@ -80,19 +93,19 @@ export default function Instagram() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 8,
+    marginTop:4,
   },
   header: {
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
     paddingHorizontal: 15,
-    height: 55,
+    height: 60,
     backgroundColor: "#fff",
     borderBottomWidth: 0.2,
     shadowColor: "#000",
     borderBottomColor: "#f1f1f1",
-    elevation: 1,
+    //elevation: 1,
   },
   logo: {},
   send: {

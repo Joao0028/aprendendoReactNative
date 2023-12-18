@@ -1,8 +1,20 @@
+import { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default function Lista({ nome, imagemPerfil, imagemPublicação, descricao, curtidas }) {
 
-  const condicaoCurtida = curtidas > 0 ? "flex" : "none"
+  const [ estadoCurtida , setEstadoCurtida ] = useState(false);
+  const [ totalCurtidas, setTotalCurtidas ] = useState(curtidas);
+
+  const condicaoCurtida = totalCurtidas > 0 ? "flex" : "none"
+
+  const condicaoLogoCurtida = estadoCurtida === false ? <Image source={require("../img/like.png")} style={styles.like}/> : <Image source={require("../img/likeada.png")} style={styles.like}/>
+
+  function curtir(){
+    setEstadoCurtida(!estadoCurtida)
+    estadoCurtida ? setTotalCurtidas(curtidas) : setTotalCurtidas(curtidas + 1)
+    return;
+  }
 
   return (
     <View style={styles.container}>
@@ -14,8 +26,8 @@ export default function Lista({ nome, imagemPerfil, imagemPublicação, descrica
       <Image resizeMode="cover" source={{ uri: imagemPublicação }} style={styles.fotoPubli} />
 
       <View style={styles.areaBtn}>
-        <TouchableOpacity>
-            <Image source={require("../img/like.png")} style={styles.like}/>
+        <TouchableOpacity onPress={curtir}>
+            {condicaoLogoCurtida}
         </TouchableOpacity>
         <TouchableOpacity>
             <Image source={require("../img/send.png")} style={styles.like}/>
@@ -23,7 +35,7 @@ export default function Lista({ nome, imagemPerfil, imagemPublicação, descrica
       </View>
 
       <View style={styles.viewCurtidas}>
-          <Text style={{...styles.curtida, display: condicaoCurtida }}>{curtidas} curtidas</Text>
+          <Text style={{...styles.curtida, display: condicaoCurtida }}>{totalCurtidas} curtidas</Text>
       </View>
 
       <View style={styles.viewRodape}>

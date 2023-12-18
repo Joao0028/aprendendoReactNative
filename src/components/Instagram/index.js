@@ -62,29 +62,27 @@ export default function Instagram() {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity>
-          <Image 
-          source={require("./img/logo.png")} 
-          style={styles.logo} 
-          />
+          <Image source={require("./img/logo.png")} style={styles.logo} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Image 
-          source={require("./img/send.png")} 
-          style={styles.send} 
-          />
+          <Image source={require("./img/send.png")} style={styles.send} />
         </TouchableOpacity>
       </View>
 
-      <FlatList 
-      showsVerticalScrollIndicator={false} 
-      data={pessoas} 
-      keyExtractor={(item) => item.id}
-      renderItem={({item}) => 
-      <Lista data={item} 
-      nome={item.nome} 
-      descricao={item.descricao}
-      imagemPerfil={item.imgperfil}
-      imagemPublicação={item.imgPublicacao}/>} 
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={pessoas}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Lista
+            data={item}
+            nome={item.nome}
+            curtidas={item.likers}
+            descricao={item.descricao}
+            imagemPerfil={item.imgperfil}
+            imagemPublicação={item.imgPublicacao}
+          />
+        )}
       />
     </View>
   );
@@ -93,7 +91,7 @@ export default function Instagram() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:4,
+    marginTop: 4,
   },
   header: {
     alignItems: "center",

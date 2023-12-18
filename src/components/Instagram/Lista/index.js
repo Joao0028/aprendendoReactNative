@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-export default function Lista({ nome, imagemPerfil, imagemPublicação, descricao }) {
+export default function Lista({ nome, imagemPerfil, imagemPublicação, descricao, curtidas }) {
+
+  const condicaoCurtida = curtidas > 0 ? "flex" : "none"
+
   return (
     <View style={styles.container}>
       <View style={styles.viewPerfil}>
@@ -17,6 +20,10 @@ export default function Lista({ nome, imagemPerfil, imagemPublicação, descrica
         <TouchableOpacity>
             <Image source={require("../img/send.png")} style={styles.like}/>
         </TouchableOpacity>
+      </View>
+
+      <View style={styles.viewCurtidas}>
+          <Text style={{...styles.curtida, display: condicaoCurtida }}>{curtidas} curtidas</Text>
       </View>
 
       <View style={styles.viewRodape}>
@@ -80,5 +87,15 @@ const styles = StyleSheet.create({
   descricaoRodape:{
     fontSize: 15,
     color: "#000"
+  },
+  viewCurtidas:{
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft:10
+  }
+  ,
+  curtida:{
+    fontSize: 15,
+    fontWeight: "bold",
   }
 });

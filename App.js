@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import Instagram from "./src/components/Instagram";
+import { StyleSheet, View } from "react-native";
+import AsyncStorage from "./src/components/AsyncStorage";
 
 export default function App() {
   
   return (
     <View style={styles.container}>
-       <Instagram />
+       <AsyncStorage />
     </View>
   );
 }

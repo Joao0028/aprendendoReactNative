@@ -1,11 +1,12 @@
 import { StyleSheet, View } from "react-native";
-import AsyncStorage from "./src/components/AsyncStorage";
+import AprendendoAsyncStorage from "./src/components/AsyncStorage";
+
 
 export default function App() {
   
   return (
     <View style={styles.container}>
-       <AsyncStorage />
+       <AprendendoAsyncStorage />
     </View>
   );
 }

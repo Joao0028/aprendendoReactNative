@@ -1,10 +1,40 @@
-import { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard } from "react-native";
 
-export default function AsyncStorage(){
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
+export default function AprendendoAsyncStorage(){
 
     const [ input, setInput ] = useState("")
     const [ nome, setNome ] = useState("João Paulo")
+
+    function gravaNome(valor){
+        setNome(valor)
+        alert("Salvo com sucesso!")
+        Keyboard.dismiss();
+        return;
+    }
+
+    // ComponentDidMount - Quando o componente é montado em tela
+    useEffect(() => {
+        async function buscaNome(){
+            await AsyncStorage.getItem('nome').then((valor) => setNome(valor)) // Vai verificar se existe algum nome no AsyncStorage, e se tiver vai armazenar no setNome mesmo que a tela tenha sido recarregada e etc
+        }
+        buscaNome()
+    },[]);
+
+    // ComponentDidUpdate - monitora toda vez que um state é atualizado
+    useEffect(() => {
+       async function salvaNome(){
+         try {
+            await AsyncStorage.setItem('nome', nome) // Vai criar um state chamado nome que vai armazenar o nome do meu useState
+         } catch (error) {
+            alert("Houve o error: " + error)
+         }
+       } 
+       salvaNome()
+    });
+
 
     return(
         <View style={styles.container}>
@@ -15,7 +45,7 @@ export default function AsyncStorage(){
             underlineColorAndroid="transparent"
             />
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => gravaNome(input)}>
                 <Text style={styles.botao}>+</Text>
             </TouchableOpacity>
 
@@ -38,14 +68,14 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     botao: {
-        width:40,
-        height: 35,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         backgroundColor: "black",
         color: "white",
         textAlign: "center",
         fontSize: 20,
     },
     nome: {
-        fontSize: 20
+        fontSize: 25
     }
 })

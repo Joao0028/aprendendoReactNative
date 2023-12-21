@@ -13,7 +13,7 @@ export default function AprendendoModal(){
     return <View style={styles.container}>
         <Button title="Entrar" color="black" onPress={entrar}/>
 
-        <Modal animation="slide" visible={modal}>
+        <Modal animationType="slide" visible={modal}>
             <View style={{backgroundColor: "#292929", flex: 1, justifyContent: "center", alignItems: "center", gap: 30}}>
                 <Text style={{color: "#fff", fontSize:22 }}>Seja bem-vindo!</Text>
 

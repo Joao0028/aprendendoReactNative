@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import imagemBomba from "./img/logo.png";
 
 export default function DesafioGasolina() {
@@ -10,9 +10,20 @@ export default function DesafioGasolina() {
 
       <View style={estilos.viewInputs}>
         <Text style={estilos.tituloInput}>Álcool (preço por litro):</Text>
-        <TextInput selectionColor="white" style={estilos.input} keyboardType="numeric" />
+        <TextInput
+          selectionColor="white"
+          style={estilos.input}
+          keyboardType="numeric"
+        />
         <Text style={estilos.tituloInput}>Gasolina (preço por litro):</Text>
-        <TextInput selectionColor="white" style={estilos.input} keyboardType="numeric" />
+        <TextInput
+          selectionColor="white"
+          style={estilos.input}
+          keyboardType="numeric"
+        />
+        <TouchableOpacity style={estilos.botao}>
+            <Text style={{color: "white", textTransform: "uppercase", fontWeight: "bold", textAlign: "center"}}>Calcular</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -32,20 +43,29 @@ const estilos = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15,
   },
-  tituloInput:{
+  tituloInput: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
   },
-  viewInputs:{
+  viewInputs: {
     width: "100%",
     paddingHorizontal: 20,
-    gap: 10
+    gap: 10,
   },
-  input:{
+  input: {
     borderBottomColor: "white",
     borderBottomWidth: 2,
-    fontSize: 16,
-    paddingBottom: 8
+    fontSize: 18,
+    paddingBottom: 8,
+    color: "white",
+  },
+  botao: { 
+    width: "100%",
+    height: 60,
+    justifyContent: "center",
+    backgroundColor: "#df2d2d",
+    marginTop: 10,
+    borderRadius: 5
   }
 });

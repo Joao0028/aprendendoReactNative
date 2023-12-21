@@ -1,17 +1,21 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import bombaGas from "../img/gas.png"
 
-export default function ModalResultado(){
+export default function ModalResultado({fechaModal, resultado, alcool, gasolina}){
+
+    const alcoolConvertido = Number(alcool).toFixed(2).replace(".",",")
+    const gasolinaConvertido = Number(gasolina).toFixed(2).replace(".",",")
+
     return <View style={estilos.container}>
         <Image source={bombaGas} />
 
-        <Text style={estilos.titulo}>Compensa usar X</Text>
+        <Text style={estilos.titulo}>Compensa usar {resultado}</Text>
         <Text style={estilos.tituloPrecos}>Com os preços:</Text>
 
-        <Text style={estilos.precos}>Álcool: R$ 0,00</Text>
-        <Text style={estilos.precos}>Gasolina: R$ 0,00</Text>
+        <Text style={estilos.precos}>Álcool: R$ {alcoolConvertido}</Text>
+        <Text style={estilos.precos}>Gasolina: R$ {gasolinaConvertido}</Text>
 
-        <TouchableOpacity style={estilos.botao}>
+        <TouchableOpacity style={estilos.botao} onPress={fechaModal}>
             <Text style={{color: '#e53b3b', textAlign: "center", fontWeight: "bold", textTransform: "uppercase"}}>
                 Calcular novamente
             </Text>
